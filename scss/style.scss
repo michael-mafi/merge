@@ -1,0 +1,47 @@
+$blend: difference;
+
+@for $i from 1 through 35{
+  .line:nth-child(#{$i}){
+    width: ($i * 8px);
+    height: ($i * 8px);
+    background-color: #F0EFF4;
+    top: ($i * -4px);
+    left: ($i * -4px);
+    z-index: -($i);
+  	mix-blend-mode: $blend;
+		animation: magic 16s ease-in-out infinite alternate;
+		animation-delay: $i*.12s;
+		
+    &:nth-child(odd) {
+      background-color: #000;
+    }
+  }
+}
+
+@keyframes magic {
+	50% {
+		transform: rotate(-0.25turn) scale(1.6) translateX(125px);
+	}
+	100% {
+		transform: rotate(-0.5turn) scale(1.4) translateX(-65px);
+	}
+}
+
+.line {
+  position: absolute;
+	border-radius: 25%;
+}
+
+body {
+  overflow: hidden;
+  background: #F0EFF4;
+}
+
+section {
+  position: absolute;
+  -webkit-box-reflect: above;
+	mix-blend-mode: $blend;
+  top: 50%;
+  left: 50%;
+	transform: rotate(-90deg);
+}
